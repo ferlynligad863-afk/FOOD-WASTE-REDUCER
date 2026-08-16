@@ -1,0 +1,967 @@
+/* ==========================================================================
+   Food Waste Reducer & Sharing Guide — ACD Web Development (Week 3 Makeover)
+   Custom CSS Design System, Flexbox, CSS Grid & Media Queries
+   ========================================================================== */
+
+/* ==========================================================================
+   1. VARIABLES
+   ========================================================================== */
+:root {
+  --primary: #10B981;
+  --primary-dark: #059669;
+  --light-green: #D1FAE5;
+  --lime: #84CC16;
+  --yellow: #FACC15;
+  --blue: #38BDF8;
+  --coral: #FB7185;
+  --dark-green: #064E3B;
+  --background: #F0FDF4;
+  --white: #FFFFFF;
+  --text: #16332A;
+  --muted: #64748B;
+
+  --card-bg: #FFFFFF;
+  --card-bg-glass: rgba(255, 255, 255, 0.88);
+  --border-color: rgba(16, 185, 129, 0.22);
+  --border-hover: rgba(16, 185, 129, 0.55);
+
+  --shadow-sm: 0 2px 8px rgba(5, 150, 105, 0.08);
+  --shadow-md: 0 8px 24px rgba(5, 150, 105, 0.12);
+  --shadow-lg: 0 16px 36px rgba(5, 150, 105, 0.16);
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+  --background: #062319;
+  --card-bg: #0D3326;
+  --card-bg-glass: rgba(13, 51, 38, 0.9);
+  --text: #F1F5F9;
+  --muted: #94A3B8;
+  --border-color: rgba(16, 185, 129, 0.28);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   2. RESET
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  color: var(--text);
+  background-color: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  color: var(--text);
+  padding-bottom: 70px;
+}
+
+@media (min-width: 769px) {
+  body {
+    padding-bottom: 0;
+  }
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Flexible layout container */
+.container {
+  width: min(92%, 1200px);
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHY
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+h1 { font-size: clamp(2rem, 4vw, 2.8rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+h3 { font-size: clamp(1.2rem, 2.2vw, 1.5rem); }
+
+p {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   4. NAVIGATION (FLEXBOX)
+   ========================================================================== */
+.site-header {
+  position: relative;
+  top: 0;
+  z-index: 100;
+  background: var(--card-bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 50%;
+  display: inline-block;
+  background: transparent;
+  transition: transform 0.25s ease;
+}
+
+.logo-box:hover .logo-img {
+  transform: rotate(12deg) scale(1.1);
+}
+
+.logo-box .logo-highlight {
+  color: var(--primary);
+}
+
+.logo-badge {
+  background: var(--light-green);
+  color: var(--dark-green);
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+}
+
+[data-theme="dark"] .logo-badge {
+  background: rgba(16, 185, 129, 0.2);
+  color: #6EE7B7;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  list-style: none;
+}
+
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--muted);
+  transition: all var(--transition-fast);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.hamburger-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Mobile Bottom Fixed Nav Bar (Visual CSS Navigation) */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--card-bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-color);
+  padding: 8px 12px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast);
+}
+
+.mobile-nav-item.active,
+.mobile-nav-item:hover {
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   5. HERO SECTION (GRID & FLEXBOX)
+   ========================================================================== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+  padding: 48px 0 60px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.acd-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--light-green);
+  color: var(--dark-green);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  margin-bottom: 16px;
+}
+
+[data-theme="dark"] .acd-badge {
+  background: rgba(16, 185, 129, 0.2);
+  color: #6EE7B7;
+}
+
+.hero-content h1 span.highlight {
+  background: linear-gradient(135deg, #10B981, #84CC16);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin: 16px 0 28px;
+  max-width: 520px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.hero-graphic-box {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+}
+
+.hero-illustration {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+/* Floating Eco Pill CSS Animations */
+.floating-eco-pill {
+  position: absolute;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: floatPill 4s ease-in-out infinite;
+}
+
+.pill-1 { top: 10%; left: -10px; animation-delay: 0s; }
+.pill-2 { bottom: 12%; right: -10px; animation-delay: 2s; }
+
+@keyframes floatPill {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ==========================================================================
+   6. BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+  transform: translateY(-3px);
+  color: #FFFFFF;
+}
+
+.btn-secondary {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--primary);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.btn-secondary:hover {
+  background: rgba(16, 185, 129, 0.22);
+  transform: translateY(-3px);
+  color: var(--primary-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--border-color);
+  color: var(--text);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   7. CARDS (GENERAL GRID & FLEXBOX)
+   ========================================================================== */
+.card {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-tag {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   8. AUDIENCE / ROLE CARDS (GRID)
+   ========================================================================== */
+.role-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.role-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.role-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.role-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--light-green);
+  color: var(--dark-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+[data-theme="dark"] .role-icon-box {
+  background: rgba(16, 185, 129, 0.2);
+  color: #6EE7B7;
+}
+
+.role-subtitle {
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin: 4px 0 14px;
+}
+
+.role-activities {
+  list-style: none;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.role-activities li {
+  font-size: 0.88rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.role-activities li::before {
+  content: "•";
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   9. FOOD WASTE JOURNEY (FLEXBOX & GRID)
+   ========================================================================== */
+.journey-container {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 36px 24px;
+  box-shadow: var(--shadow-md);
+}
+
+.journey-steps-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.journey-step-item {
+  flex: 1;
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 10px;
+  text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.journey-step-item:hover,
+.journey-step-item.active-step {
+  border-color: var(--primary);
+  background: var(--light-green);
+  transform: translateY(-4px);
+}
+
+[data-theme="dark"] .journey-step-item.active-step {
+  background: rgba(16, 185, 129, 0.25);
+}
+
+.journey-step-icon {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.journey-step-name {
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   10. ACD PRINCIPLES (GRID)
+   ========================================================================== */
+.acd-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.acd-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.acd-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+}
+
+/* ==========================================================================
+   11. CORE ACTIONS (GRID)
+   ========================================================================== */
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* ==========================================================================
+   12. LEARN BY DOING PREVIEWS (GRID)
+   ========================================================================== */
+.previews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.preview-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.preview-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+}
+
+.week4-badge {
+  display: inline-block;
+  background: var(--light-green);
+  color: var(--dark-green);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   13. IMPACT DASHBOARD (GRID)
+   ========================================================================== */
+.impact-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-val {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.stat-label {
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   14. ACHIEVEMENTS & BADGES (GRID)
+   ========================================================================== */
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.badge-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  text-align: center;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.badge-card.unlocked {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.badge-card.locked {
+  opacity: 0.6;
+  filter: grayscale(80%);
+}
+
+.badge-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Progress bar styling */
+.progress-bar-track {
+  background: rgba(16, 185, 129, 0.15);
+  border-radius: var(--radius-full);
+  height: 16px;
+  overflow: hidden;
+  margin: 14px 0;
+}
+
+.progress-bar-fill {
+  background: linear-gradient(90deg, #10B981, #84CC16);
+  height: 100%;
+  border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   15. FOOTER (GRID & FLEXBOX)
+   ========================================================================== */
+.site-footer {
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  padding: 48px 0 24px;
+  margin-top: auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.footer-brand p {
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+.footer-links h4 {
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-links a {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   16. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================================== */
+
+/* Breakpoint 1: Desktop / Laptop (1024px to 1440px) */
+@media (max-width: 1024px) {
+  .role-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .acd-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .impact-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .badges-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Breakpoint 2: Tablet (768px to 1023px) */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: block;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-top: 3px solid #10B981;
+    border-bottom: 3px solid #10B981;
+    padding: 12px 20px 20px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    z-index: 9999;
+    flex-direction: column;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+  }
+
+  .nav-links.active {
+    display: flex !important;
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .nav-links li {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #16332A;
+    text-decoration: none;
+    background: transparent;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    border: 2px solid transparent;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links a:hover {
+    background: #D1FAE5;
+    color: #064E3B;
+    border-color: #10B981;
+    transform: translateX(4px);
+  }
+
+  .nav-links a.active {
+    background: #10B981;
+    color: #ffffff;
+    border-color: #059669;
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
+  }
+
+  .hero-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 24px 0 40px;
+  }
+
+  .hero-content {
+    align-items: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .journey-steps-track {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .previews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Breakpoint 3: Mobile (320px to 640px) */
+@media (max-width: 640px) {
+  .role-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .acd-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .badges-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content h1 {
+    font-size: 1.85rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   MOBILE MENU SLIDE-DOWN ANIMATION
+   ========================================================================== */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
