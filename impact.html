@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impact Dashboard Preview — Food Waste Reducer</title>
+  <meta name="description" content="Personal & community impact dashboard preview calculating food waste saved, grocery money saved in Pesos (₱), and CO2 reduction.">
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Site Header (Flexbox Navigation) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-box">
+        <img src="images/logo.svg" alt="ACD Eco Logo" class="logo-img" width="32" height="32">
+        <span>Food Reducer <span class="logo-highlight">&amp; Sharing</span></span>
+        <span class="logo-badge">ACD</span>
+      </a>
+
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        ☰ Menu
+      </button>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">🏠 Home</a></li>
+          <li><a href="about.html">📚 About</a></li>
+          <li><a href="quiz.html">🎮 Quiz</a></li>
+          <li><a href="impact.html" class="active">🌍 Impact</a></li>
+          <li><a href="achievements.html">🏆 Achievements</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding: 40px 0 60px;">
+    
+    <!-- Page Header -->
+    <section class="container" style="margin-bottom: 40px;">
+      <div class="section-header">
+        <span class="section-tag">Sample / Demonstration Data</span>
+        <h2>🌍 Personal &amp; Community Impact Dashboard</h2>
+        <p style="max-width: 650px; margin-inline: auto;">
+          Demonstration preview of environmental food waste reduction, grocery savings in Pesos (₱), and carbon footprint impact.
+        </p>
+      </div>
+    </section>
+
+    <!-- Impact Stats Grid -->
+    <section class="container" style="margin-bottom: 60px;">
+      <div class="impact-stats-grid">
+        <div class="stat-card">
+          <div class="stat-val" id="stat-food-saved">120 kg</div>
+          <div class="stat-label">🍚 Estimated Food Saved</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-val" id="stat-money-saved">₱18,000</div>
+          <div class="stat-label">💰 Estimated Money Saved</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-val" id="stat-co2-saved">300 kg</div>
+          <div class="stat-label">🌱 Estimated CO₂e Reduced</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-val" id="stat-meals-shared">240</div>
+          <div class="stat-label">🤝 Meals Shared</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Impact Meter Card -->
+    <section class="container" style="margin-bottom: 60px;">
+      <div class="card" style="max-width: 720px; margin-inline: auto; text-align: center;">
+        <span class="section-tag">Steward Progress</span>
+        <h2>🌱 Your Environmental Impact Meter</h2>
+        
+        <div style="margin: 28px 0; position: relative; display: inline-block;">
+          <svg viewBox="0 0 160 160" style="width: 180px; height: 180px; transform: rotate(-90deg);">
+            <circle cx="80" cy="80" r="70" fill="none" stroke="var(--background)" stroke-width="14" />
+            <circle id="gauge-fill-circle" cx="80" cy="80" r="70" fill="none" stroke="var(--primary)" stroke-width="14" stroke-linecap="round" stroke-dasharray="440" stroke-dashoffset="88" />
+          </svg>
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <div style="font-size: 1.8rem; font-weight: 800;" id="gauge-val-text">80%</div>
+            <div style="font-size: 0.8rem; color: var(--muted);" id="gauge-lbl-text">Low Waste Impact</div>
+          </div>
+        </div>
+
+        <div style="padding: 16px; background: var(--background); border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: left;">
+          <h4 style="color: var(--primary);">🎯 Next Goal:</h4>
+          <p style="font-size: 0.9rem; margin-top: 4px;">Planning meals just 2 extra days a week can reduce household food waste by another 10% and save thousands of Pesos annually!</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Visual Mobile Navigation -->
+  <nav class="mobile-bottom-nav">
+    <a href="index.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="quiz.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🎮</span>
+      <span>Play</span>
+    </a>
+    <a href="achievements.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🎯</span>
+      <span>Challenge</span>
+    </a>
+    <a href="impact.html" class="mobile-nav-item active">
+      <span style="font-size: 1.2rem;">🌍</span>
+      <span>Impact</span>
+    </a>
+    <a href="achievements.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🏆</span>
+      <span>Badges</span>
+    </a>
+  </nav>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Assumption College of Davao (ACD) — Personal Impact Dashboard Preview.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

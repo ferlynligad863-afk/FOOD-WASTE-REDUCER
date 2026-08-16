@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz &amp; Interactive Previews — Food Waste Reducer</title>
+  <meta name="description" content="Interactive learning games, waste sorting quiz, and decision tree tools for Assumption College of Davao.">
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Site Header (Flexbox Navigation) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-box">
+        <img src="images/logo.svg" alt="ACD Eco Logo" class="logo-img" width="32" height="32">
+        <span>Food Reducer <span class="logo-highlight">&amp; Sharing</span></span>
+        <span class="logo-badge">ACD</span>
+      </a>
+
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        ☰ Menu
+      </button>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">🏠 Home</a></li>
+          <li><a href="about.html">📚 About</a></li>
+          <li><a href="quiz.html" class="active">🎮 Quiz</a></li>
+          <li><a href="impact.html">🌍 Impact</a></li>
+          <li><a href="achievements.html">🏆 Achievements</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding: 40px 0 60px;">
+    
+    <!-- Page Header -->
+    <section class="container" style="margin-bottom: 40px;">
+      <div class="section-header">
+        <span class="section-tag">Interactive Feature Page</span>
+        <h2>🎮 Learn by Doing — Educational Games</h2>
+        <p style="max-width: 650px; margin-inline: auto;">
+          Test your waste sorting knowledge, challenge food myths, and explore safety decision tools.
+        </p>
+      </div>
+    </section>
+
+    <!-- Quiz Component 1: Sort It! -->
+    <section class="container" id="sort-it" style="margin-bottom: 60px;">
+      <div class="card" style="max-width: 720px; margin-inline: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+          <div>
+            <span class="week4-badge">Interactive Quiz UI</span>
+            <h2 style="font-size: 1.6rem;">♻️ SORT IT!</h2>
+          </div>
+          <div class="acd-badge" id="sort-game-score">Score: 0 / 9</div>
+        </div>
+
+        <p style="font-size: 0.95rem; color: var(--muted); margin-bottom: 16px;">Select an item below, then click the matching category bin to sort it!</p>
+
+        <div class="draggable-items-container" id="draggable-items-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="bins-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; margin-bottom: 24px;">
+          <div class="bin-card bin-biodegradable" data-category="biodegradable" style="padding: 16px; border: 2px dashed #10B981; border-radius: var(--radius-md); text-align: center; cursor: pointer;">
+            <div style="font-size: 1.8rem;">🟢</div>
+            <strong style="display: block; margin-top: 4px;">Biodegradable</strong>
+            <span style="font-size: 0.75rem; color: var(--muted);">Organic / Food peels</span>
+          </div>
+          <div class="bin-card bin-recyclable" data-category="recyclable" style="padding: 16px; border: 2px dashed #38BDF8; border-radius: var(--radius-md); text-align: center; cursor: pointer;">
+            <div style="font-size: 1.8rem;">🔵</div>
+            <strong style="display: block; margin-top: 4px;">Recyclable</strong>
+            <span style="font-size: 0.75rem; color: var(--muted);">Clean bottles &amp; cans</span>
+          </div>
+          <div class="bin-card bin-residual" data-category="residual" style="padding: 16px; border: 2px dashed #64748B; border-radius: var(--radius-md); text-align: center; cursor: pointer;">
+            <div style="font-size: 1.8rem;">⚫</div>
+            <strong style="display: block; margin-top: 4px;">Residual</strong>
+            <span style="font-size: 0.75rem; color: var(--muted);">Non-recyclable trash</span>
+          </div>
+          <div class="bin-card bin-special" data-category="special" style="padding: 16px; border: 2px dashed #FB7185; border-radius: var(--radius-md); text-align: center; cursor: pointer;">
+            <div style="font-size: 1.8rem;">🔴</div>
+            <strong style="display: block; margin-top: 4px;">Special Waste</strong>
+            <span style="font-size: 0.75rem; color: var(--muted);">Batteries &amp; e-waste</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-secondary" id="reset-sort-game-btn" style="width: 100%;">🔄 Reset Sorting Game</button>
+      </div>
+    </section>
+
+    <!-- Quiz Component 2: Myth or Fact? -->
+    <section class="container" id="myth-fact" style="margin-bottom: 60px;">
+      <div class="card" style="max-width: 720px; margin-inline: auto; text-align: center;">
+        <span class="section-tag">Knowledge Challenge</span>
+        <h2>🧠 Myth or Fact?</h2>
+        <p style="font-size: 1.2rem; font-weight: 700; margin: 24px 0;" id="myth-statement-text">
+          “All food past its printed date is automatically unsafe to consume.”
+        </p>
+
+        <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 24px;">
+          <button type="button" class="btn btn-secondary" id="myth-btn-myth" style="padding: 14px 36px; font-size: 1.1rem;">
+            ❌ MYTH
+          </button>
+          <button type="button" class="btn btn-primary" id="myth-btn-fact" style="padding: 14px 36px; font-size: 1.1rem;">
+            ✅ FACT
+          </button>
+        </div>
+
+        <div id="myth-explanation-box" style="display: none; padding: 16px; background: var(--background); border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: left; font-size: 0.9rem;">
+        </div>
+      </div>
+    </section>
+
+    <!-- Tool 3: Storage Challenge -->
+    <section class="container" id="storage-challenge" style="margin-bottom: 60px;">
+      <div class="card">
+        <div class="section-header" style="margin-bottom: 20px;">
+          <span class="section-tag">Storage Visual Tool</span>
+          <h2>🧊 Where Should Different Foods Be Stored?</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px;">
+          <div class="stat-card" style="cursor: pointer;">
+            <div style="font-size: 2rem;">🥬</div>
+            <div style="font-weight: 700; margin-top: 6px;">Vegetables</div>
+            <p style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Crisper drawer in fridge</p>
+          </div>
+          <div class="stat-card" style="cursor: pointer;">
+            <div style="font-size: 2rem;">🍎</div>
+            <div style="font-weight: 700; margin-top: 6px;">Fruits</div>
+            <p style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Room temp or fridge</p>
+          </div>
+          <div class="stat-card" style="cursor: pointer;">
+            <div style="font-size: 2rem;">🥛</div>
+            <div style="font-weight: 700; margin-top: 6px;">Dairy</div>
+            <p style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Main fridge shelves</p>
+          </div>
+          <div class="stat-card" style="cursor: pointer;">
+            <div style="font-size: 2rem;">🍗</div>
+            <div style="font-weight: 700; margin-top: 6px;">Meat</div>
+            <p style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Bottom shelf or freezer</p>
+          </div>
+          <div class="stat-card" style="cursor: pointer;">
+            <div style="font-size: 2rem;">🍚</div>
+            <div style="font-weight: 700; margin-top: 6px;">Cooked Food</div>
+            <p style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Airtight fridge container</p>
+          </div>
+          <div class="stat-card" style="cursor: pointer;">
+            <div style="font-size: 2rem;">🍞</div>
+            <div style="font-weight: 700; margin-top: 6px;">Bread</div>
+            <p style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Room temp or freezer</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tool 4: What Should I Do? Advisor -->
+    <section class="container" id="what-should-i-do" style="margin-bottom: 60px;">
+      <div class="card" style="max-width: 720px; margin-inline: auto;">
+        <span class="section-tag">Safety Decision Tool</span>
+        <h2>🍚 What Should I Do With This Food?</h2>
+        <p style="font-size: 0.95rem; margin: 10px 0 20px;">Explore responsible options for leftover or excess food:</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+          <div>
+            <label for="decision-food-type" style="font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 6px;">1. Food Type:</label>
+            <select id="decision-food-type" class="btn btn-outline" style="width: 100%; text-align: left;">
+              <option value="cooked_meal">Cooked Meal / Leftover Rice</option>
+              <option value="fresh_produce">Fresh Vegetables / Fruits</option>
+              <option value="unopened_pantry">Unopened Pantry Item / Canned</option>
+              <option value="scraps_peels">Food Peels / Scraps</option>
+            </select>
+          </div>
+          <div>
+            <label for="decision-condition" style="font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 6px;">2. Food Condition:</label>
+            <select id="decision-condition" class="btn btn-outline" style="width: 100%; text-align: left;">
+              <option value="fresh_leftover">Wholesome &amp; Safe</option>
+              <option value="excess">Excess / Surplus</option>
+              <option value="questionable">Questionable / Moldy</option>
+              <option value="spooled_scraps">Inedible Trimmings</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="decision-result-box" style="padding: 18px; background: var(--background); border-radius: var(--radius-md); border: 2px solid var(--primary);">
+          <h4 style="color: var(--primary);">🍽️ Action Recommendation:</h4>
+          <p style="font-size: 0.92rem; margin-top: 4px;">Refrigerate in an airtight container within 2 hours of cooking. Consume within 3-4 days or freeze!</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Visual Mobile Navigation -->
+  <nav class="mobile-bottom-nav">
+    <a href="index.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="quiz.html" class="mobile-nav-item active">
+      <span style="font-size: 1.2rem;">🎮</span>
+      <span>Play</span>
+    </a>
+    <a href="achievements.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🎯</span>
+      <span>Challenge</span>
+    </a>
+    <a href="impact.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🌍</span>
+      <span>Impact</span>
+    </a>
+    <a href="achievements.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🏆</span>
+      <span>Badges</span>
+    </a>
+  </nav>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Assumption College of Davao (ACD) — Quiz &amp; Interactive Feature Page.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

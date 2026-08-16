@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievements &amp; Eco Badges Preview — Food Waste Reducer</title>
+  <meta name="description" content="Visual achievements, level progress bar, and badge system for Assumption College of Davao.">
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Site Header (Flexbox Navigation) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-box">
+        <img src="images/logo.svg" alt="ACD Eco Logo" class="logo-img" width="32" height="32">
+        <span>Food Reducer <span class="logo-highlight">&amp; Sharing</span></span>
+        <span class="logo-badge">ACD</span>
+      </a>
+
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        ☰ Menu
+      </button>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">🏠 Home</a></li>
+          <li><a href="about.html">📚 About</a></li>
+          <li><a href="quiz.html">🎮 Quiz</a></li>
+          <li><a href="impact.html">🌍 Impact</a></li>
+          <li><a href="achievements.html" class="active">🏆 Achievements</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding: 40px 0 60px;">
+    
+    <!-- Page Header -->
+    <section class="container" style="margin-bottom: 40px;">
+      <div class="section-header">
+        <span class="section-tag">Visual Badge System Preview</span>
+        <h2>🏆 Achievements &amp; Steward Badges</h2>
+        <p style="max-width: 650px; margin-inline: auto;">
+          Track your gamified steward levels, unlocked badges, and daily challenges.
+        </p>
+      </div>
+    </section>
+
+    <!-- User Steward Level Progress Bar -->
+    <section class="container" style="margin-bottom: 60px;">
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <span class="section-tag">Gamified Level</span>
+            <h2 class="user-level-title">Level 3 — Food Saver</h2>
+          </div>
+          <div class="acd-badge" style="font-size: 0.95rem; padding: 8px 18px;">
+            🌱 <span class="eco-points-val">85</span> Total Eco Points
+          </div>
+        </div>
+
+        <div class="progress-bar-track">
+          <div class="progress-fill user-level-fill" style="width: 80%;"></div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--muted);">
+          <span>Level 1: Seedling</span>
+          <span style="font-weight: 700; color: var(--primary);" class="user-level-percentage">80% to Level 4</span>
+          <span>Level 5: Creation Care Hero</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Badges Grid -->
+    <section class="container" style="margin-bottom: 60px;">
+      <div class="section-header" style="text-align: left; margin-bottom: 20px;">
+        <span class="section-tag">Trophy Showcase</span>
+        <h2>Steward Badges</h2>
+      </div>
+
+      <div class="badges-grid">
+        <!-- Badge 1 -->
+        <div class="badge-card unlocked" data-badge-id="first_step">
+          <div style="font-size: 2.5rem; margin-bottom: 8px;">🌱</div>
+          <h3>First Step</h3>
+          <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Started your Food Waste Journey</p>
+          <div style="margin-top: 10px; font-weight: 700; font-size: 0.8rem; color: var(--primary);" class="badge-status">✅ Unlocked</div>
+        </div>
+
+        <!-- Badge 2 -->
+        <div class="badge-card unlocked" data-badge-id="sorting_pro">
+          <div style="font-size: 2.5rem; margin-bottom: 8px;">♻️</div>
+          <h3>Sorting Pro</h3>
+          <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Mastered waste segregation in "Sort It!"</p>
+          <div style="margin-top: 10px; font-weight: 700; font-size: 0.8rem; color: var(--primary);" class="badge-status">✅ Unlocked</div>
+        </div>
+
+        <!-- Badge 3 -->
+        <div class="badge-card unlocked" data-badge-id="food_saver">
+          <div style="font-size: 2.5rem; margin-bottom: 8px;">🍚</div>
+          <h3>Food Saver</h3>
+          <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Earned 70+ Eco Points</p>
+          <div style="margin-top: 10px; font-weight: 700; font-size: 0.8rem; color: var(--primary);" class="badge-status">✅ Unlocked</div>
+        </div>
+
+        <!-- Badge 4 -->
+        <div class="badge-card locked" data-badge-id="smart_planner">
+          <div style="font-size: 2.5rem; margin-bottom: 8px;">🥕</div>
+          <h3>Smart Planner</h3>
+          <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Planned weekly meals in advance</p>
+          <div style="margin-top: 10px; font-weight: 700; font-size: 0.8rem; color: var(--muted);" class="badge-status">🔒 Locked</div>
+        </div>
+
+        <!-- Badge 5 -->
+        <div class="badge-card locked" data-badge-id="food_sharer">
+          <div style="font-size: 2.5rem; margin-bottom: 8px;">🤝</div>
+          <h3>Food Sharer</h3>
+          <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Shared surplus food with community pantry</p>
+          <div style="margin-top: 10px; font-weight: 700; font-size: 0.8rem; color: var(--muted);" class="badge-status">🔒 Locked</div>
+        </div>
+
+        <!-- Badge 6 -->
+        <div class="badge-card locked" data-badge-id="creation_care">
+          <div style="font-size: 2.5rem; margin-bottom: 8px;">🌍</div>
+          <h3>Creation Care Champion</h3>
+          <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Embodied ACD values across all categories</p>
+          <div style="margin-top: 10px; font-weight: 700; font-size: 0.8rem; color: var(--muted);" class="badge-status">🔒 Locked</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Visual Mobile Navigation -->
+  <nav class="mobile-bottom-nav">
+    <a href="index.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="quiz.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🎮</span>
+      <span>Play</span>
+    </a>
+    <a href="achievements.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🎯</span>
+      <span>Challenge</span>
+    </a>
+    <a href="impact.html" class="mobile-nav-item">
+      <span style="font-size: 1.2rem;">🌍</span>
+      <span>Impact</span>
+    </a>
+    <a href="achievements.html" class="mobile-nav-item active">
+      <span style="font-size: 1.2rem;">🏆</span>
+      <span>Badges</span>
+    </a>
+  </nav>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Assumption College of Davao (ACD) — Achievements &amp; Badges Preview.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
